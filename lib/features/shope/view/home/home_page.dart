@@ -80,7 +80,7 @@ class _HomePageState extends State<HomePage> {
                     banners: [
                       'assets/images/onbording/esh2.jpg',
                       'assets/images/onbording/eb.jpg',
-                      'assets/images/onbording/e3.jpg',
+                //      'assets/images/onbording/e3.jpg',
                     ],
                   ),
                   SizedBox(height: 15,),
