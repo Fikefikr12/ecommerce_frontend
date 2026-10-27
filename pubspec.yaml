@@ -1,7 +1,7 @@
 name: ecommerce_frontend
 description: "A new Flutter project."
 
-publish_to: 'none'
+publish_to: "none"
 
 version: 1.0.0+1
 
@@ -12,9 +12,8 @@ dependencies:
   flutter:
     sdk: flutter
 
-
   cupertino_icons: ^1.0.8
-  iconsax: 
+  iconsax:
   http: ^1.6.0
   logger: ^2.6.2
   flutter_native_splash: ^2.4.7
@@ -25,14 +24,24 @@ dependencies:
   carousel_slider: ^5.1.2
   readmore: ^3.0.0
   flutter_rating_bar: ^4.0.1
-
+  firebase_core: ^4.5.0
+  firebase_authentication: ^0.0.32
+  get: ^4.7.3
+  cloud_firestore: ^6.3.0
+  google_sign_in: ^7.2.0
+  image_picker: ^1.2.2
+  http_parser: ^4.1.2
+  web_socket_channel: ^3.0.3
+  shared_preferences: ^2.5.3
+  google_maps_flutter: ^2.17.1
+  url_launcher: ^6.3.2
+  toastification: ^3.2.2
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
 
   flutter_lints: ^6.0.0
-
 
 flutter:
   uses-material-design: true
@@ -42,7 +51,6 @@ flutter:
     - assets/icons/
     - assets/logos/
     - assets/images/onbording/
-        
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images

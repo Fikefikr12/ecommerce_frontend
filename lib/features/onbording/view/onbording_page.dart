@@ -7,6 +7,7 @@ import 'package:ecommerce_frontend/features/onbording/widgets/next_onbording_but
 import 'package:ecommerce_frontend/features/onbording/widgets/reusable_onbording.dart';
 import 'package:ecommerce_frontend/features/onbording/widgets/skip_onbording.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class OnbordingPage extends StatefulWidget {
@@ -31,50 +32,61 @@ class _OnbordingPageState extends State<OnbordingPage> {
             curve: Curves.easeInOut,
           );
           // Navigate when completed
-      if(state.isCompleted) {
-        Navigator.push(context, MaterialPageRoute(builder: (_)=>LoginPage()));
-      }
-         },
-        child: Stack(
-          children: [
-            PageView(
-              controller: pageController,
-              onPageChanged: (index) {
-                context
-                    .read<OnbordingBloc>()
-                    .add(PageChangedEvent(index));
-              },
-              children: const [
-                ReusableOnbording(
-                  image: "assets/images/onbording/e2.jpg",
-                  title: "Choose your Product",
-                  subtitle:
-                      "Welcome to a world of limitless choices - your perfect product awaits!",
-                ),
-                ReusableOnbording(
-                  image: "assets/images/onbording/e3.jpg",
-                  title: "Select Payment Method",
-                  subtitle:
-                      "For seamless transactions, choose your payment path!",
-                ),
-                ReusableOnbording(
-                  image: "assets/images/onbording/e1.jpg",
-                  title: "Deliver at Your Door Step",
-                  subtitle:
-                      "From our doorstep to yours - Swift & secure delivery!",
-                ),
-              ],
-            ),
-    
-            /// Skip
-            const SkipOnbording(),
-    
-            /// Dot
-            DotOnbording(controller: pageController),
-    
-            /// Next
-            const NextOnbordingButton(),
-          ],
+          if (state.isCompleted) {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (_) => LoginPage()),
+            );
+          }
+        },
+        child: SafeArea(
+          child: LayoutBuilder(
+            builder: (context, constraints) {
+              final screenHeight = constraints.maxHeight;
+              final isShortScreen = screenHeight < 600;
+              return Stack(
+                children: [
+                  PageView(
+                    controller: pageController,
+                    onPageChanged: (index) {
+                      context.read<OnbordingBloc>().add(
+                        PageChangedEvent(index),
+                      );
+                    },
+                    children: const [
+                      ReusableOnbording(
+                        image: "assets/images/onbording/e2.jpg",
+                        title: "Choose your Product",
+                        subtitle:
+                            "Welcome to a world of limitless choices - your perfect product awaits!",
+                      ),
+                      ReusableOnbording(
+                        image: "assets/images/onbording/e3.jpg",
+                        title: "Select Payment Method",
+                        subtitle:
+                            "For seamless transactions, choose your payment path!",
+                      ),
+                      ReusableOnbording(
+                        image: "assets/images/onbording/e1.jpg",
+                        title: "Deliver at Your Door Step",
+                        subtitle:
+                            "From our doorstep to yours - Swift & secure delivery!",
+                      ),
+                    ],
+                  ),
+
+                  /// Skip
+                  const SkipOnbording(),
+
+                  /// Dot
+                  DotOnbording(controller: pageController),
+
+                  /// Next
+                  const NextOnbordingButton(),
+                ],
+              );
+            },
+          ),
         ),
       ),
     );

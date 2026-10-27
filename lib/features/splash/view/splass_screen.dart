@@ -10,7 +10,6 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> {
-
   @override
   void initState() {
     super.initState();
@@ -18,9 +17,7 @@ class _SplashScreenState extends State<SplashScreen> {
     Timer(const Duration(seconds: 3), () {
       Navigator.pushReplacement(
         context,
-        MaterialPageRoute(
-          builder: (context) => const OnbordingPage(),
-        ),
+        MaterialPageRoute(builder: (context) => const OnbordingPage()),
       );
     });
   }
@@ -29,7 +26,7 @@ class _SplashScreenState extends State<SplashScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Image.asset(
-        "assets/images/onbording/splash.png",
+        "assets/images/onbording/splash.jpg",
         width: double.infinity,
         fit: BoxFit.cover,
       ),

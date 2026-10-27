@@ -1,8 +1,11 @@
+import 'package:ecommerce_frontend/core/service/auth_service.dart';
 import 'package:ecommerce_frontend/features/forgetpassword/view/reset_password_page.dart';
 import 'package:flutter/material.dart';
 
 class ForgetPasswordPage extends StatelessWidget {
-  const ForgetPasswordPage({super.key});
+    ForgetPasswordPage({super.key});
+
+  final AuthService authService =AuthService();
 
   @override
   Widget build(BuildContext context) {
@@ -28,6 +31,7 @@ class ForgetPasswordPage extends StatelessWidget {
               ),
               SizedBox(height: 24),
               TextFormField(
+                controller: authService.email,
                 decoration: InputDecoration(
                   prefixIcon: Icon(Icons.email),
                   labelText: "enter your email",
@@ -39,12 +43,13 @@ class ForgetPasswordPage extends StatelessWidget {
                 width: double.infinity,
                 child: ElevatedButton(
                   onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => ResetPasswordPage(),
-                      ),
-                    );
+                    // Navigator.push(
+                    //   context,
+                    //   MaterialPageRoute(
+                    //     builder: (context) => ResetPasswordPage(),
+                    //   ),
+                    // );
+                    authService.forgetpassword(context, authService.email.text);
                   },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.blue,

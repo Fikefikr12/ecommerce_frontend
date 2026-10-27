@@ -1,9 +1,15 @@
+import 'package:ecommerce_frontend/core/service/auth_service.dart';
 import 'package:ecommerce_frontend/core/util/common/success/success_page.dart';
 import 'package:ecommerce_frontend/features/login/views/login_page.dart';
 import 'package:flutter/material.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class VerifyEmailPage extends StatelessWidget {
-  const VerifyEmailPage({super.key});
+    VerifyEmailPage({super.key});
+
+  // 🔥 create AuthService instance
+    final authService = AuthService();
+
 
   @override
   Widget build(BuildContext context) {
@@ -46,8 +52,9 @@ class VerifyEmailPage extends StatelessWidget {
                 ),
               ),
               SizedBox(height: 10),
+               // 🔥 Show current user email dynamically
               Text(
-                "support@coding.com",
+               FirebaseAuth.instance.currentUser?.email ?? "No email",
                 style: TextStyle(
                   color: Colors.black54,
                   fontSize: 16,
@@ -55,64 +62,91 @@ class VerifyEmailPage extends StatelessWidget {
                 ),
               ),
               SizedBox(height: 10),
-              Text(
-                "Congradulation! Your Account Awaits: Verify your Email to start shopping and Experiance aworld of unrivaied  \n            Deals and Personalized offers.",
-                style: TextStyle(color: Colors.black45, fontSize: 14),
+              
+              // Text(
+              //   "Congradulation! Your Account Awaits: Verify your Email to start shopping and Experiance aworld of unrivaied  \n            Deals and Personalized offers.",
+              //   style: TextStyle(color: Colors.black45, fontSize: 14),
+              // ),
+              // SizedBox(height: 20),
+              // Container(
+              //   width: double.infinity,
+              //   decoration: BoxDecoration(
+              //     borderRadius: BorderRadius.circular(5),
+              //   ),
+              //   child: ElevatedButton(
+              //     onPressed: () {
+              //       Navigator.push(
+              //         context,
+              //         MaterialPageRoute(
+              //           builder: (context) => SuccessPage(
+              //             image: "assets/images/onbording/e3.jpg",
+              //             title:
+              //                 "Your account successfully \n             created!",
+              //             subTitle:
+              //                 "Welcome to your ultimate Shopping Destination: Your Account is Created, Unleash the joy of  \n            Seamless Online Shopping!",
+              //             onPressed: () {
+              //               Navigator.push(
+              //                 context,
+              //                 MaterialPageRoute(
+              //                   builder: (context) => LoginPage(),
+              //                 ),
+              //               );
+              //             },
+              //           ),
+              //         ),
+              //       );
+              //     },
+              //     style: ElevatedButton.styleFrom(
+              //       backgroundColor: Colors.blueAccent,
+              //       foregroundColor: Colors.white,
+              //     ),
+              //     child: Text("Continue"),
+              //   ),
+              // ),
+              // SizedBox(height: 20),
+              // Container(
+              //   width: double.infinity,
+              //   decoration: BoxDecoration(
+              //     borderRadius: BorderRadius.circular(5),
+              //   ),
+              //   child: ElevatedButton(
+              //     onPressed: () {
+              //       Navigator.push(
+              //         context,
+              //         MaterialPageRoute(
+              //           builder: (context) => VerifyEmailPage(),
+              //         ),
+              //       );
+              //     },
+              //     style: TextButton.styleFrom(),
+              //     child: Text("Resend Email"),
+              //   ),
+              // ),
+               const Text(
+                "Check your inbox and click the verification link.",
+                style: TextStyle(color: Colors.black45),
               ),
-              SizedBox(height: 20),
-              Container(
-                width: double.infinity,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(5),
-                ),
-                child: ElevatedButton(
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => SuccessPage(
-                          image: "assets/images/onbording/e3.jpg",
-                          title:
-                              "Your account successfully \n             created!",
-                          subTitle:
-                              "Welcome to your ultimate Shopping Destination: Your Account is Created, Unleash the joy of  \n            Seamless Online Shopping!",
-                          onPressed: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => LoginPage(),
-                              ),
-                            );
-                          },
-                        ),
-                      ),
-                    );
-                  },
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.blueAccent,
-                    foregroundColor: Colors.white,
-                  ),
-                  child: Text("Continue"),
-                ),
+
+              const SizedBox(height: 20),
+
+              // ================= CONTINUE BUTTON =================
+              ElevatedButton(
+                onPressed: () async {
+                  // 🔥 Check if email is verified
+                  await authService.handleEmailVerification(context);
+                },
+                child: const Text("I have verified"),
               ),
-              SizedBox(height: 20),
-              Container(
-                width: double.infinity,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(5),
-                ),
-                child: ElevatedButton(
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => VerifyEmailPage(),
-                      ),
-                    );
-                  },
-                  style: TextButton.styleFrom(),
-                  child: Text("Resend Email"),
-                ),
+
+              const SizedBox(height: 20),
+
+              // ================= RESEND BUTTON =================
+              ElevatedButton(
+                onPressed: () async {
+                  // 🔥 resend email
+                  await authService.resendVerificationEmail(context);
+                },
+                child: const Text("Resend Email"),
               ),
             ],
           ),

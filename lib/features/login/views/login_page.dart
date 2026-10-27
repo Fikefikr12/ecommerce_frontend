@@ -1,3 +1,4 @@
+import 'package:ecommerce_frontend/features/login/views/test_mode.dart';
 import 'package:ecommerce_frontend/features/login/widget/login_form.dart';
 import 'package:ecommerce_frontend/features/login/widget/login_form_divider.dart';
 import 'package:ecommerce_frontend/features/login/widget/login_header.dart';
@@ -20,6 +21,12 @@ class LoginPage extends StatelessWidget {
               LoginFormDivider(dividerText: "Or Sign in With"),
               SizedBox(height: 20),
               SocialButtons(),
+              ElevatedButton(
+                onPressed: () {
+                  //  Navigator.push(context, MaterialPageRoute(builder: (context)=>TestMode()));
+                },
+                child: Text("test Mode"),
+              ),
             ],
           ),
         ),

@@ -2,15 +2,25 @@ import 'package:ecommerce_frontend/core/util/common/widgets/custom_appbar.dart';
 import 'package:ecommerce_frontend/core/util/common/widgets/product_card_horizontal.dart';
 import 'package:ecommerce_frontend/core/util/common/widgets/rounded_images.dart';
 import 'package:ecommerce_frontend/core/util/common/widgets/section_header.dart';
+import 'package:ecommerce_frontend/data/model/product_model.dart';
 import 'package:flutter/material.dart';
 
 class SubCatagoryPage extends StatelessWidget {
-  const SubCatagoryPage({super.key});
+  final String title;
+  final String image;
+  final List<Product> products;
+  const SubCatagoryPage({
+    required this.title,
+    required this.image,
+    required this.products,
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
+    print("Image url: $image");
     return Scaffold(
-      appBar: CustomAppbar(title: Text('Sport'), showBackArrow: true),
+      appBar: CustomAppbar(title: Text(title), showBackArrow: true),
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.all(24.0),
@@ -18,8 +28,9 @@ class SubCatagoryPage extends StatelessWidget {
             children: [
               // banner
               RoundedImage(
-                imageUrl: "assets/images/onbording/ebra.jpg",
+                imageUrl: image,
                 applyImageRadius: true,
+                isNetworkImage: true,
               ),
               SizedBox(height: 32),
 
@@ -31,11 +42,12 @@ class SubCatagoryPage extends StatelessWidget {
                   SizedBox(
                     height: 120,
                     child: ListView.separated(
-                      itemCount: 4,
+                      itemCount: products.length,
                       scrollDirection: Axis.horizontal,
-                      separatorBuilder:(context,index)=> SizedBox(width: 16,),
-                      itemBuilder:(context,index)=> ProductCardHorizontal()
-                      ),
+                      separatorBuilder: (context, index) => SizedBox(width: 16),
+                      itemBuilder: (context, index) =>
+                          ProductCardHorizontal(product: products[index]),
+                    ),
                   ),
                 ],
               ),

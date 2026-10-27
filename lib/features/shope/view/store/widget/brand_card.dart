@@ -1,14 +1,19 @@
 import 'package:ecommerce_frontend/core/util/common/widgets/brand_title_with_verification.dart';
 import 'package:ecommerce_frontend/core/util/common/widgets/circular_container.dart';
 import 'package:ecommerce_frontend/core/util/common/widgets/circular_image.dart';
+import 'package:ecommerce_frontend/data/model/brand.dart';
 import 'package:flutter/material.dart';
 
 class BrandCard extends StatelessWidget {
   const BrandCard({
-    super.key,   this.showBorder=true, this.onTap,
+    super.key,
+    this.showBorder = true,
+    this.onTap,
+    required this.brand,
   });
-final bool showBorder;
-final void Function()? onTap;
+  final bool showBorder;
+  final void Function()? onTap;
+  final BrandModel brand;
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -23,8 +28,10 @@ final void Function()? onTap;
           children: [
             Flexible(
               child: CircularImage(
-                isNetworkImage: false,
-                image: 'assets/images/onbording/esh2.jpg',
+                isNetworkImage: brand.image.isNotEmpty,
+                image: brand.image.isNotEmpty
+                    ? brand.image
+                    : 'assets/images/onbording/esh2.jpg',
                 backgroundColor: Colors.transparent,
                 // overlayColor: Colors.
               ),
@@ -33,17 +40,16 @@ final void Function()? onTap;
             Expanded(
               child: Column(
                 mainAxisSize: MainAxisSize.min,
-                crossAxisAlignment:
-                    CrossAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   BrandTitleWithVerification(
-                    title: "Nike",
+                    title: brand.name,
                     iconColor: Colors.blue,
                     brandTextSizes: 14,
                     fontWeight: FontWeight.bold,
                   ),
                   Text(
-                    '245 products are mfjjf',
+                    '${brand.productsCount} Products',
                     style: TextStyle(
                       overflow: TextOverflow.ellipsis,
                       fontSize: 12,

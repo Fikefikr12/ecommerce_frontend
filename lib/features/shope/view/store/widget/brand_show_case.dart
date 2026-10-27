@@ -1,13 +1,12 @@
 import 'package:ecommerce_frontend/core/util/common/widgets/circular_container.dart';
+import 'package:ecommerce_frontend/data/model/brand.dart';
 import 'package:ecommerce_frontend/features/shope/view/store/widget/brand_card.dart';
 import 'package:flutter/material.dart';
 
 class BrandShowCase extends StatelessWidget {
-  const BrandShowCase({
-    super.key, 
-  required this.images
-  });
+  const BrandShowCase({super.key, required this.images, required this.brand});
   final List<String> images;
+  final BrandModel brand;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -19,8 +18,8 @@ class BrandShowCase extends StatelessWidget {
       ),
       child: Column(
         children: [
-          BrandCard(showBorder: false),
-          SizedBox(height: 13,),
+          BrandCard(brand: brand, showBorder: false),
+          SizedBox(height: 13),
           Row(
             children: images
                 .map((image) => brandTopProducrImageWidget(image, context))

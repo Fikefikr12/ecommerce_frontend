@@ -50,7 +50,9 @@ class ResetPasswordPage extends StatelessWidget {
               SizedBox(
                 width: double.infinity,
                 child: ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () {
+                      Navigator.pop(context); // go back
+                  },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.blue,
                     foregroundColor: Colors.white,
@@ -62,7 +64,9 @@ class ResetPasswordPage extends StatelessWidget {
                SizedBox(
                 width: double.infinity,
                 child: TextButton(
-                  onPressed: () {},
+                  onPressed: () {
+                     Navigator.pop(context); // go back to enter email again
+                  },
                   style: TextButton.styleFrom(
                     backgroundColor: Colors.grey.shade300
                   ),

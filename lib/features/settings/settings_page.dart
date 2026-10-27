@@ -4,6 +4,7 @@ import 'package:ecommerce_frontend/core/util/constants/app.colors.dart';
 import 'package:ecommerce_frontend/features/settings/widgets/setting_menu_tile.dart';
 import 'package:ecommerce_frontend/features/settings/widgets/user_profile_tile.dart';
 import 'package:ecommerce_frontend/features/shope/view/address/address_page.dart';
+import 'package:ecommerce_frontend/features/shope/view/loadData/load_data_page.dart';
 import 'package:ecommerce_frontend/features/shope/view/order/order_page.dart';
 import 'package:ecommerce_frontend/features/shope/view/profile/profile_page.dart';
 import 'package:ecommerce_frontend/features/shope/widgets/header_container.dart';
@@ -32,7 +33,10 @@ class SettingsPage extends StatelessWidget {
 
                   UserProfileTile(
                     onPressed: () {
-                      Navigator.push(context, MaterialPageRoute(builder: (context)=>ProfilePage()));
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => ProfilePage()),
+                      );
                     },
                   ),
                   SizedBox(height: 32),
@@ -53,8 +57,11 @@ class SettingsPage extends StatelessWidget {
                     title: "My Addresses",
                     subtitle: "Set Shopping delivery Address",
                     icon: Icons.home,
-                    onTap: (){
-                       Navigator.push(context, MaterialPageRoute(builder: (context)=>AddressPage()));
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => AddressPage()),
+                      );
                     },
                   ),
                   SettingMenuTile(
@@ -66,8 +73,11 @@ class SettingsPage extends StatelessWidget {
                     title: "My Orders",
                     subtitle: "In - progress and Completed Orders",
                     icon: Icons.shop,
-                    onTap: (){
-                       Navigator.push(context, MaterialPageRoute(builder: (context)=>OrderPage()));
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => OrderPage()),
+                      );
                     },
                   ),
                   SettingMenuTile(
@@ -98,6 +108,12 @@ class SettingsPage extends StatelessWidget {
                     title: "Load Data",
                     subtitle: "Upload Data your cloud Firebase",
                     icon: Icons.document_scanner,
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (_) => LoadDataPage()),
+                      );
+                    },
                   ),
                   SettingMenuTile(
                     title: "Gelocation",
